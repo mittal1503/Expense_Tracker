@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="">Income Summary</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+           Summary
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a href="" class="btn btn-warning">BACK</a>
+    </div>
+
+  </div>
+
+ <div class="row">
+<div class="col-md-4">
+  <label for=""><h5>Choose a month:</h5></label>
+  <select name="month" id="monthss" class="form-control mb-2" >Select
+    <option name="month" value="1">1 month</option>
+        <option name="month" value="2">2 month</option>
+        <option name="month" value="3">3 month</option>
+        <option name="month" value="4">4 month</option>
+        <option name="month" value="5">5 month</option>
+        <option name="month" value="6">6 month</option>
+        <option name="month" value="7">7 month</option>
+        <option name="month" value="8">8 month</option>
+        <option name="month" value="9">9 month</option>
+        <option name="month" value="10">10 month</option>
+        <option name="month" value="11">11 month</option>
+        <option name="month" value="12">1 Year</option>
+        <option name="month" value="12">2 Year</option>
+        <option name="month" value="12">3 Year</option>
+  </select>
+  <label for=""><h5>Choose a graph:</h5></label>
+      <select name="graph" id="graphs" class="form-control mb-2" >Select
+        <option name="graph" value="pie">pie</option>
+        <option name="graph" value="line">line</option>
+        <option name="graph" value="doughnut">doughnut</option>
+        <option name="graph" value="bar">bar</option>
+      </select>
+      <label for=""><h5>Choose a source:</h5></label>
+      <select name="source" class="form-control" id="source">
+        {% for source in  sources%}
+         <option name="source"value={{source.name}}>{{source.name}}</option>
+        {% endfor %}
+      </select>
+     
+ </div>
+ <div class="col-md-6">
+  <canvas id="myChart" width="100" height="90"  style="background-color: rgb(20, 16, 16);"></canvas>
+ </div>
+</div>
+
+<script src="{% static 'js/istat.js' %}"></script>
+
+</script>
+
+{% endblock content %}

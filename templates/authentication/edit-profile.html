@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Profile</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+        </ol>
+    </nav>
+
+    <div class="row mb-4">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <a href="{% url 'reset_password' %}" class="btn btn-danger">Change Password</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'profile-edit' user.id %}" method="post">{% include 'partials/_messages.html'%}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">User Id: </label>
+                    <input type="text" style="pointer-events:none;" class="form-control form-control-sm mb-4" name="id" value="{{user.id}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Username: </label>
+                    <input type="text" class="form-control form-control-sm mb-4" name="username"
+                        value="{{user.username}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Email Id: </label>
+                    <input type="text" class="form-control form-control-sm mb-4" name="email" value="{{user.email}}">
+                </div>
+                <input type="submit" value="Save" class="btn btn-warning btn-warnig-sm">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+ <div class="row">
+   <div class="col-md-10">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'expenses'%}">Expenses</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li> Expenses</li>
+      </ol>
+    </nav>
+   </div>
+   <div class="col-md-2">
+     <a href="{% url 'expense-delete' expense.id %}" class="btn btn-danger btn-5m">Delete</a>
+   </div>
+ </div>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'expense-edit' expense.id %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group">
+          <label for="">Amount</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{values.amount}}"
+          />
+        </div>
+        <div class="form-group"><p></p>
+          <label for="">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="description"
+            value="{{values.description}}"
+          />
+        </div>
+        <div class="form-group"><p></p>
+          <label for="">Category</label><div> 
+          <select name="category" class="form-control" id="category">
+            <option selected name="category"value={{values.category}}>{{values.category}}</option>
+            {% for category in  categories%}
+             <option name="category"value={{category.name}}>{{category.name}}</option>
+            {% endfor %}
+                    </select></div>
+    
+        </div>
+        <div class="form-group"><p></p>
+          <label for="">Date of Expense</label>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            name="expense_date"
+            value="{{values.date | date:'Y-m-d'}}"
+          />
+        </div>
+        <p></p>
+        <input
+          type="submit"
+          value="Save"
+          class="btn btn-warning btn-warnig-sm"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
